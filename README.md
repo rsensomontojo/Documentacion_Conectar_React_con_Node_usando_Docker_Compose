@@ -118,17 +118,25 @@ networks:
 Crea el archivo `Dockerfile` dentro de la carpeta `react/next-productivity-app`:
 
 ```dockerfile
+# Usa la imagen base oficial de node:18-alpine para la aplicación Node.js
 FROM node:18-alpine
 
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Copia el package.json y package-lock.json para aprovechar la caché de Docker
+# y solo ejecutar npm install si los archivos de dependencias cambian
+COPY package.json ./
+COPY package-lock.json ./
+
+# Instala las dependencias de la aplicación
 RUN npm install
 
+# Copia el resto del código fuente de la aplicación al contenedor
 COPY . .
-EXPOSE 3000
 
-CMD ["npm", "start"]
+# Establece las variables de entorno necesarias (puedes cambiar esta URL según se>ENV REACT_APP_BASE_URL=http://192.168.1.179:5000/tasks
+
 ```
 
 ### Para Node.js
@@ -241,9 +249,21 @@ Si quieres empujar la imagen a un repositorio como Docker Hub, puedes usar el si
    ```
 El final --push: envía la imagen al repositorio especificado (asegúrate de haber iniciado sesión en Docker Hub o cualquier otro registro de contenedores).
 
+7. **Verificar la imagen construida:**
+
+Para ver todas las imágenes que has construido, puedes usar el comando:
+   ```bash
+   docker images
+   ```
+Y para ver los "builders" disponibles:
+   ```bash
+   docker buildx ls
+   ```
 ---
 
 ## Estructura del Proyecto
+
+Tree de como deben quedar las carpetas y docs si lo hiciste igual que yo
 
 ```plaintext
 despliegue/                            # Directorio principal del proyecto
@@ -263,6 +283,13 @@ despliegue/                            # Directorio principal del proyecto
 │
 ├── docker-compose.yaml                 # Archivo de configuración de Docker Compose
 ```
+**Ejecutar:**
+   ```bash
+   docker-compose up --build
+   ```
+*Si todo está correcto deberia salir:*
+
+
 
 ---
 

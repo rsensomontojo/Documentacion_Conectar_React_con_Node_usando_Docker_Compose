@@ -289,7 +289,9 @@ despliegue/                            # Directorio principal del proyecto
    ```
 *Si todo está correcto deberia salir:*
 
-
+![Verificacion1](./Verificacion1.png)
+![Verificacion2](./Verificacion2.png)
+![Verificacion3](./Verificacion3.png)
 
 ---
 

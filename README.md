@@ -293,21 +293,14 @@ despliegue/                            # Directorio principal del proyecto
 ![Verificacion2](./Verificacion2.png)
 ![Verificacion3](./Verificacion3.png)
 
----
-
-## Solución de problemas
-
-1. **Error de timeout:**
+**Para salir:**
    ```bash
-   export COMPOSE_HTTP_TIMEOUT=200
+   Ctrl+C
    ```
-
-2. **Reiniciar contenedores con cambios:**
-   ```bash
-   docker-compose up --build -d
-   ```
-
----
 
 ¡Y listo! Tu aplicación React y Node.js debería estar funcionando correctamente con Docker Compose.
+
+---
+
+
 
